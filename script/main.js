@@ -42,13 +42,13 @@ const animationTimeline = () => {
 
   
 
-// document.getElementById("play-audio-btn").addEventListener("click", function() {
-//   const audio = document.getElementById("birthday-audio");
-//   if (audio) {
-//     audio.play();
-//   }
-//   // this.style.display = "none"; // Hide button after playing
-// });
+document.getElementById("play-audio-btn").addEventListener("click", function() {
+  const audio = document.getElementById("birthday-audio");
+  if (audio) {
+    audio.play();
+  }
+  // this.style.display = "none"; // Hide button after playing
+});
 
 
     
