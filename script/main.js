@@ -34,20 +34,22 @@ const animationTimeline = () => {
   // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
-  const audio = document.getElementById("birthday-audio");
-  if (audio) {
-    audio.currentTime = 0;
-    audio.play().catch(() => {});
-  }
+  // Try to autoplay when animation starts
+const audio = document.getElementById("birthday-audio");
+if (audio) {
+  audio.currentTime = 0;
+  audio.play().then(() => {
+    document.getElementById("play-audio-btn").style.display = "none";
+  }).catch(() => {});
+}
 
-  
-
+// Also allow manual play with the button
 document.getElementById("play-audio-btn").addEventListener("click", function() {
   const audio = document.getElementById("birthday-audio");
   if (audio) {
     audio.play();
   }
-  // this.style.display = "none"; // Hide button after playing
+  this.style.display = "none"; // Hide button after playing
 });
 
 
