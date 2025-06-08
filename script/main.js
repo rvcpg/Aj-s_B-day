@@ -27,7 +27,26 @@ const fetchData = () => {
 };
 
 
-
+function launchConfetti() {
+  const colors = ["#ffb347", "#ff69b4", "#6ec6ff", "#81c784", "#fff176", "#f06292"];
+  const confetti = document.querySelector('.confetti');
+  confetti.innerHTML = '';
+  for (let i = 0; i < 80; i++) {
+    const div = document.createElement('div');
+    div.className = 'confetti-piece';
+    div.style.background = colors[Math.floor(Math.random() * colors.length)];
+    div.style.left = Math.random() * 100 + 'vw';
+    div.style.top = '-40px';
+    confetti.appendChild(div);
+    TweenMax.to(div, 2 + Math.random() * 2, {
+      y: 100 + Math.random() * window.innerHeight,
+      x: (Math.random() - 0.5) * 200,
+      rotation: Math.random() * 720,
+      ease: Power2.easeIn,
+      delay: Math.random() * 0.5
+    });
+  }
+}
 
 // Animation Timeline
 const animationTimeline = () => {
@@ -232,18 +251,72 @@ document.getElementById("play-audio-btn").addEventListener("click", function() {
       },
       0.2
     )
+    // .from(
+    //   ".dp",
+    //   0.5,
+    //   {
+    //     scale: 3.5,
+    //     opacity: 0,
+    //     x: 25,
+    //     y: -25,
+    //     rotationZ: -45
+    //   },
+    //   "-=2"
+    // )
     .from(
-      ".dp",
-      0.5,
-      {
-        scale: 3.5,
-        opacity: 0,
-        x: 25,
-        y: -25,
-        rotationZ: -45
-      },
-      "-=2"
-    )
+  ".dp",
+  1,
+  {
+    scale: 0.2,
+    opacity: 0,
+    rotation: -30,
+    y: -100,
+    boxShadow: "0 0 0 0 #ffb347",
+    ease: Bounce.easeOut
+  },
+  "-=2"
+)
+.to(
+  ".dp",
+  0.7,
+  {
+    rotation: 5,
+    boxShadow: "0 0 40px 10px #ffb347",
+    filter: "brightness(1.2)",
+    ease: Power2.easeInOut
+  },
+  "-=0.5"
+)
+.to(
+  ".dp",
+  0.5,
+  {
+    rotation: 0,
+    boxShadow: "0 0 0 0 #ffb347",
+    filter: "brightness(1)",
+    ease: Power2.easeOut
+  }
+)
+
+.fromTo(
+  ".crown",
+  1.2,
+  {
+    opacity: 0,
+    y: -100,
+    scale: 0.5,
+    rotation: -90
+  },
+  {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotation: 0,
+    ease: Bounce.easeOut
+  },
+  "-=0.8"
+)
+
     .from(".hat", 0.5, {
       x: 2,
       y: 2,
@@ -326,6 +399,9 @@ document.getElementById("play-audio-btn").addEventListener("click", function() {
   ideaTextTrans,
   1.2
 )
+.add(() => {
+  launchConfetti();
+}, "+=0.2")
 .add(() => {
   // Animate cartoon stars
   TweenMax.staggerTo(

@@ -116,6 +116,16 @@ body {
   position: relative;
 }
 
+.crown {
+  position: absolute;
+  width: 60px;
+  top: 42px;
+  left: 53%;
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
 .dp {
   width: 500px;    /* Set your desired width */
   height: auto;    /* Keeps the aspect ratio */
@@ -328,4 +338,18 @@ body {
     font-size: 1.5rem;
     font-weight: lighter;
   }
+  .confetti {
+  pointer-events: none;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 999;
+}
+.confetti-piece {
+  position: absolute;
+  width: 12px;
+  height: 24px;
+  border-radius: 3px;
+  opacity: 0.8;
+  will-change: transform;
+}
 }
